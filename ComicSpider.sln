@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell", "Shell\Shell.csproj", "{CABBB529-8066-41DC-A861-2C558F8CBD65}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4EA0D13F-CB86-4467-9038-C68CCBA0C3C8} = {4EA0D13F-CB86-4467-9038-C68CCBA0C3C8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuFengApi", "GuFengApi\GuFengApi.csproj", "{4EA0D13F-CB86-4467-9038-C68CCBA0C3C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CABBB529-8066-41DC-A861-2C558F8CBD65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CABBB529-8066-41DC-A861-2C558F8CBD65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CABBB529-8066-41DC-A861-2C558F8CBD65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CABBB529-8066-41DC-A861-2C558F8CBD65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EA0D13F-CB86-4467-9038-C68CCBA0C3C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EA0D13F-CB86-4467-9038-C68CCBA0C3C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EA0D13F-CB86-4467-9038-C68CCBA0C3C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EA0D13F-CB86-4467-9038-C68CCBA0C3C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA92DC99-D02E-4B29-BDA4-2AC0C096F34D}
+	EndGlobalSection
+EndGlobal
