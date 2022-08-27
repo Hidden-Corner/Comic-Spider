@@ -30,7 +30,7 @@ namespace GuFengApi
             return books;
         }
 
-        protected HttpWebRequest InitApiHttpRequest(Uri requestUri)
+        protected static HttpWebRequest InitApiHttpRequest(Uri requestUri)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUri);
             request.Method = "GET";
@@ -40,7 +40,7 @@ namespace GuFengApi
             return request;
         }
 
-        protected HtmlDocument GetDocument(Uri htmlUri)
+        internal static HtmlDocument GetDocument(Uri htmlUri)
         {
             HttpWebRequest request = InitApiHttpRequest(htmlUri);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
