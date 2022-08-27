@@ -6,6 +6,7 @@ using HtmlAgilityPack;
 using System.Text.RegularExpressions;
 using Microsoft.WindowsAPICodePack.Shell;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace GuFengApi
 {
@@ -17,7 +18,7 @@ namespace GuFengApi
         string time; // 最后更新时间
         Uri bookUri;
 
-        public class Chapter
+        public class Chapter : IDisposable
         {
             string name;
             Uri uri;
@@ -27,6 +28,45 @@ namespace GuFengApi
             public Uri[] Pages { get => pages; internal set => pages = value; }
             public Uri Uri { get => uri; internal set => uri = value; }
             public int Count => Pages.Length;
+
+            #region IDisposable 派生实现
+            bool disposed = false;
+
+            public void Dispose()
+            {
+                Dispose(true);
+                GC.SuppressFinalize(this);
+            }
+
+            ~Chapter()
+            {
+                Dispose(false);
+            }
+
+            protected virtual void Dispose(bool disposing)
+            {
+                if (disposed)
+                {
+                    return;
+                }
+                //清理托管资源
+                if (disposing)
+                {
+                    if (name != null)
+                        name = null;
+                    if (uri != null)
+                        uri = null;
+                    if (pages != null)
+                    {
+                        for (int i = 0; i < pages.Length; i++)
+                            pages[i] = null;
+                        pages = null;
+                    }
+                }
+                //告诉自己已经被释放
+                disposed = true;
+            }
+            #endregion
         }
 
         Chapter[] chapters;
@@ -42,7 +82,7 @@ namespace GuFengApi
             // 直接调用现成的函数
             for (int i = 0; i < chapters.Length; ++i)
             {
-                DownloadSingleChapterTo(i);
+                DownloadSingleChapter(i);
             }
         }
 
@@ -58,7 +98,25 @@ namespace GuFengApi
             if (chapters[rank].Pages == null)
                 chapters[rank].Pages = InitPages(chapters[rank].Uri);
 
-            string path = GetDownloadPath();
+            using (var target = chapters[rank]) {
+                string path = GetDownloadPath() + "/ComicSpider";
+
+                #region 检查文件下载目录是否存在
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                if (!Directory.Exists($"{path}/{title}"))
+                    Directory.CreateDirectory(path + $"/{title}");
+                if (!Directory.Exists($"{path}/{title}/{target.Name}"))
+                    Directory.CreateDirectory($"{path}/{title}/{target.Name}");
+                #endregion
+
+                path = $"{path}/{title}/{target.Name}";
+                for (int i = 0; i < target.Pages.Length; ++i)
+                {
+                    // 逐一下载图片
+                    Client.Download(target.Pages[i], $"{path}/{i + 1}.jpg");
+                }
+            }
         }
 
         protected Chapter[] InitChapters()

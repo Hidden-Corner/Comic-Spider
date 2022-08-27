@@ -56,5 +56,25 @@ namespace GuFengApi
             response.Close();
             return doc;
         }
+
+        internal static void Download(Uri uri, string path)
+        {
+            HttpWebRequest request = InitApiHttpRequest(uri);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream stream = response.GetResponseStream();
+            FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
+            BinaryWriter bw = new BinaryWriter(file);
+            byte[] buffer = new byte[1024];
+            int size = stream.Read(buffer, 0, buffer.Length);
+            while(size > 0)
+            {
+                bw.Write(buffer, 0, size);
+                size = stream.Read(buffer, 0, buffer.Length);
+            }
+            bw.Close();
+            file.Close();
+            stream.Close();
+            response.Close();
+        }
     }
 }
