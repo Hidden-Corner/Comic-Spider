@@ -119,6 +119,7 @@ namespace GuFengApi
             }
         }
 
+        #region 内部方法
         protected Chapter[] InitChapters()
         {
             HtmlDocument doc = Client.GetDocument(bookUri);
@@ -159,8 +160,8 @@ namespace GuFengApi
             }
             return path;
         }
-
-        #region 初始化相关，应给 Client 写入权限
+        #endregion
+        #region 初始化相关
         public string Title { get => title; internal set => title = value; }
         public Uri Cover { get => cover; internal set => cover = value; }
         public string UpdateTo { get => updateTo; internal set => updateTo = value; }
