@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (C) 2022 Hidden Corner
+// GuFengApi 核心实现
+
+using System;
 using System.IO;
 using System.Net;
 using HtmlAgilityPack;
@@ -7,7 +10,7 @@ namespace GuFengApi
 {
     public class Client
     {
-        protected static string mainUri = "https://www.123gf.com/";
+        protected static string mainUri = Ini.Read("Settings", "Website", "Settings.ini");
 
         public Book[] Search(string title)
         {
