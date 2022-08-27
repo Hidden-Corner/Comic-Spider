@@ -1,0 +1,12 @@
+C:\Users\ASUS\source\repos\Comic-Spider\bin\Debug\ComicSpider.exe.config
+C:\Users\ASUS\source\repos\Comic-Spider\bin\Debug\ComicSpider.exe
+C:\Users\ASUS\source\repos\Comic-Spider\bin\Debug\ComicSpider.pdb
+C:\Users\ASUS\source\repos\Comic-Spider\bin\Debug\HtmlAgilityPack.dll
+C:\Users\ASUS\source\repos\Comic-Spider\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\ASUS\source\repos\Comic-Spider\bin\Debug\HtmlAgilityPack.xml
+C:\Users\ASUS\source\repos\Comic-Spider\obj\Debug\ComicSpider.csproj.AssemblyReference.cache
+C:\Users\ASUS\source\repos\Comic-Spider\obj\Debug\ComicSpider.csproj.SuggestedBindingRedirects.cache
+C:\Users\ASUS\source\repos\Comic-Spider\obj\Debug\ComicSpider.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\source\repos\Comic-Spider\obj\Debug\ComicSpider.csproj.CopyComplete
+C:\Users\ASUS\source\repos\Comic-Spider\obj\Debug\ComicSpider.exe
+C:\Users\ASUS\source\repos\Comic-Spider\obj\Debug\ComicSpider.pdb
