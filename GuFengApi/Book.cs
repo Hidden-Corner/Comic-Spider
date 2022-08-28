@@ -99,7 +99,7 @@ namespace GuFengApi
                 chapters[rank].Pages = InitPages(chapters[rank].Uri);
 
             using (var target = chapters[rank]) {
-                string path = GetDownloadPath() + "/ComicSpider";
+                string path = GetDownloadPath();
 
                 #region 检查文件下载目录是否存在
                 if (!Directory.Exists(path))
@@ -152,11 +152,20 @@ namespace GuFengApi
         }
         protected string GetDownloadPath()
         {
-            string path = Ini.Read("Settings", "DownloadPath", "Settings.ini");
-            if (path == "?" || !Directory.Exists("path"))
+            string path;
+            try
+            {
+                path = Ini.Read("Settings", "DownloadPath", "Settings.ini");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"[warning]{DateTime.Now}: Failed to read Settings.ini. Use \"{KnownFolders.Downloads.Path + "\\ComicSpider"}\" as default download path.");
+                return KnownFolders.Downloads.Path;
+            }
+            if (path == "?" || !Directory.Exists(path))
             {
                 Ini.Write("Settings", "DownloadPath", KnownFolders.Downloads.Path, "Settings.ini");
-                return KnownFolders.Downloads.Path;
+                return KnownFolders.Downloads.Path + "\\ComicSpider";
             }
             return path;
         }

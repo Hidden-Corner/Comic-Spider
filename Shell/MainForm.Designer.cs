@@ -30,24 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelTop = new System.Windows.Forms.Panel();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.searchBar = new System.Windows.Forms.TextBox();
+            this.iconSearch = new FontAwesome.Sharp.IconPictureBox();
+            this.logoTitle = new System.Windows.Forms.Label();
+            this.logo = new System.Windows.Forms.PictureBox();
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.btnMaximize = new FontAwesome.Sharp.IconButton();
             this.btnExit = new FontAwesome.Sharp.IconButton();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.panelSide = new System.Windows.Forms.PictureBox();
+            this.btnSettings = new FontAwesome.Sharp.IconButton();
+            this.btnHistory = new FontAwesome.Sharp.IconButton();
+            this.btnDownload = new FontAwesome.Sharp.IconButton();
+            this.btnMainPage = new FontAwesome.Sharp.IconButton();
             this.panelSubform = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
-            this.iconButton4 = new FontAwesome.Sharp.IconButton();
-            this.iconButton5 = new FontAwesome.Sharp.IconButton();
-            this.iconSearch = new FontAwesome.Sharp.IconPictureBox();
-            this.searchBar = new System.Windows.Forms.TextBox();
             this.panelTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            this.panelMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelSide)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -55,38 +56,65 @@
             this.panelTop.BackColor = System.Drawing.Color.MidnightBlue;
             this.panelTop.Controls.Add(this.searchBar);
             this.panelTop.Controls.Add(this.iconSearch);
-            this.panelTop.Controls.Add(this.labelTitle);
-            this.panelTop.Controls.Add(this.pictureBox1);
+            this.panelTop.Controls.Add(this.logoTitle);
+            this.panelTop.Controls.Add(this.logo);
             this.panelTop.Controls.Add(this.btnMinimize);
             this.panelTop.Controls.Add(this.btnMaximize);
             this.panelTop.Controls.Add(this.btnExit);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(841, 50);
+            this.panelTop.Size = new System.Drawing.Size(850, 50);
             this.panelTop.TabIndex = 0;
             this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragWindow);
             // 
-            // labelTitle
+            // searchBar
             // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("微软雅黑", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelTitle.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelTitle.Location = new System.Drawing.Point(51, 13);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(131, 25);
-            this.labelTitle.TabIndex = 4;
-            this.labelTitle.Text = "Comic Spider";
+            this.searchBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.searchBar.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.searchBar.Location = new System.Drawing.Point(226, 13);
+            this.searchBar.Name = "searchBar";
+            this.searchBar.Size = new System.Drawing.Size(504, 25);
+            this.searchBar.TabIndex = 6;
+            this.searchBar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StartSearching);
             // 
-            // pictureBox1
+            // iconSearch
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(5, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.iconSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.iconSearch.BackColor = System.Drawing.Color.MidnightBlue;
+            this.iconSearch.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.iconSearch.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.iconSearch.IconColor = System.Drawing.SystemColors.ControlLightLight;
+            this.iconSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconSearch.IconSize = 30;
+            this.iconSearch.Location = new System.Drawing.Point(193, 10);
+            this.iconSearch.Name = "iconSearch";
+            this.iconSearch.Size = new System.Drawing.Size(30, 30);
+            this.iconSearch.TabIndex = 5;
+            this.iconSearch.TabStop = false;
+            // 
+            // logoTitle
+            // 
+            this.logoTitle.AutoSize = true;
+            this.logoTitle.Font = new System.Drawing.Font("微软雅黑", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.logoTitle.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.logoTitle.Location = new System.Drawing.Point(51, 13);
+            this.logoTitle.Name = "logoTitle";
+            this.logoTitle.Size = new System.Drawing.Size(131, 25);
+            this.logoTitle.TabIndex = 4;
+            this.logoTitle.Text = "Comic Spider";
+            // 
+            // logo
+            // 
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.Location = new System.Drawing.Point(5, 5);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(40, 40);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo.TabIndex = 3;
+            this.logo.TabStop = false;
             // 
             // btnMinimize
             // 
@@ -97,7 +125,7 @@
             this.btnMinimize.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMinimize.IconSize = 25;
-            this.btnMinimize.Location = new System.Drawing.Point(727, 10);
+            this.btnMinimize.Location = new System.Drawing.Point(736, 10);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(30, 30);
             this.btnMinimize.TabIndex = 2;
@@ -113,7 +141,7 @@
             this.btnMaximize.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMaximize.IconSize = 25;
-            this.btnMaximize.Location = new System.Drawing.Point(763, 10);
+            this.btnMaximize.Location = new System.Drawing.Point(772, 10);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(30, 30);
             this.btnMaximize.TabIndex = 1;
@@ -129,7 +157,7 @@
             this.btnExit.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExit.IconSize = 25;
-            this.btnExit.Location = new System.Drawing.Point(799, 10);
+            this.btnExit.Location = new System.Drawing.Point(808, 10);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(30, 30);
             this.btnExit.TabIndex = 0;
@@ -139,137 +167,115 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.panelMenu.Controls.Add(this.iconButton5);
-            this.panelMenu.Controls.Add(this.iconButton4);
-            this.panelMenu.Controls.Add(this.iconButton3);
-            this.panelMenu.Controls.Add(this.iconButton2);
-            this.panelMenu.Controls.Add(this.iconButton1);
+            this.panelMenu.Controls.Add(this.panelSide);
+            this.panelMenu.Controls.Add(this.btnSettings);
+            this.panelMenu.Controls.Add(this.btnHistory);
+            this.panelMenu.Controls.Add(this.btnDownload);
+            this.panelMenu.Controls.Add(this.btnMainPage);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 50);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(150, 490);
+            this.panelMenu.Size = new System.Drawing.Size(150, 500);
             this.panelMenu.TabIndex = 1;
+            // 
+            // panelSide
+            // 
+            this.panelSide.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panelSide.Location = new System.Drawing.Point(0, 10);
+            this.panelSide.Name = "panelSide";
+            this.panelSide.Size = new System.Drawing.Size(5, 30);
+            this.panelSide.TabIndex = 4;
+            this.panelSide.TabStop = false;
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSettings.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.btnSettings.IconColor = System.Drawing.Color.Black;
+            this.btnSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSettings.IconSize = 40;
+            this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSettings.Location = new System.Drawing.Point(0, 150);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(150, 50);
+            this.btnSettings.TabIndex = 3;
+            this.btnSettings.Text = "设置";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // btnHistory
+            // 
+            this.btnHistory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnHistory.FlatAppearance.BorderSize = 0;
+            this.btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistory.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnHistory.IconChar = FontAwesome.Sharp.IconChar.ClockRotateLeft;
+            this.btnHistory.IconColor = System.Drawing.Color.Black;
+            this.btnHistory.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnHistory.IconSize = 40;
+            this.btnHistory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHistory.Location = new System.Drawing.Point(0, 100);
+            this.btnHistory.Name = "btnHistory";
+            this.btnHistory.Size = new System.Drawing.Size(150, 50);
+            this.btnHistory.TabIndex = 2;
+            this.btnHistory.Text = "历史记录";
+            this.btnHistory.UseVisualStyleBackColor = true;
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
+            // 
+            // btnDownload
+            // 
+            this.btnDownload.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDownload.FlatAppearance.BorderSize = 0;
+            this.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDownload.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnDownload.IconChar = FontAwesome.Sharp.IconChar.Download;
+            this.btnDownload.IconColor = System.Drawing.Color.Black;
+            this.btnDownload.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDownload.IconSize = 40;
+            this.btnDownload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDownload.Location = new System.Drawing.Point(0, 50);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(150, 50);
+            this.btnDownload.TabIndex = 1;
+            this.btnDownload.Text = "下载队列";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            // 
+            // btnMainPage
+            // 
+            this.btnMainPage.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMainPage.FlatAppearance.BorderSize = 0;
+            this.btnMainPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMainPage.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnMainPage.IconChar = FontAwesome.Sharp.IconChar.Home;
+            this.btnMainPage.IconColor = System.Drawing.Color.Black;
+            this.btnMainPage.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnMainPage.IconSize = 40;
+            this.btnMainPage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMainPage.Location = new System.Drawing.Point(0, 0);
+            this.btnMainPage.Name = "btnMainPage";
+            this.btnMainPage.Size = new System.Drawing.Size(150, 50);
+            this.btnMainPage.TabIndex = 0;
+            this.btnMainPage.Text = "主页";
+            this.btnMainPage.UseVisualStyleBackColor = true;
+            this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
             // 
             // panelSubform
             // 
             this.panelSubform.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSubform.Location = new System.Drawing.Point(150, 50);
             this.panelSubform.Name = "panelSubform";
-            this.panelSubform.Size = new System.Drawing.Size(691, 490);
+            this.panelSubform.Size = new System.Drawing.Size(700, 500);
             this.panelSubform.TabIndex = 2;
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Home;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(0, 0);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(150, 50);
-            this.iconButton1.TabIndex = 0;
-            this.iconButton1.Text = "iconButton1";
-            this.iconButton1.UseVisualStyleBackColor = true;
-            // 
-            // iconButton2
-            // 
-            this.iconButton2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton2.FlatAppearance.BorderSize = 0;
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Home;
-            this.iconButton2.IconColor = System.Drawing.Color.Black;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.Location = new System.Drawing.Point(0, 50);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(150, 50);
-            this.iconButton2.TabIndex = 1;
-            this.iconButton2.Text = "iconButton2";
-            this.iconButton2.UseVisualStyleBackColor = true;
-            // 
-            // iconButton3
-            // 
-            this.iconButton3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton3.FlatAppearance.BorderSize = 0;
-            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.Home;
-            this.iconButton3.IconColor = System.Drawing.Color.Black;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(0, 100);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(150, 50);
-            this.iconButton3.TabIndex = 2;
-            this.iconButton3.Text = "iconButton3";
-            this.iconButton3.UseVisualStyleBackColor = true;
-            // 
-            // iconButton4
-            // 
-            this.iconButton4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton4.FlatAppearance.BorderSize = 0;
-            this.iconButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.Home;
-            this.iconButton4.IconColor = System.Drawing.Color.Black;
-            this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton4.Location = new System.Drawing.Point(0, 150);
-            this.iconButton4.Name = "iconButton4";
-            this.iconButton4.Size = new System.Drawing.Size(150, 50);
-            this.iconButton4.TabIndex = 3;
-            this.iconButton4.Text = "iconButton4";
-            this.iconButton4.UseVisualStyleBackColor = true;
-            // 
-            // iconButton5
-            // 
-            this.iconButton5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton5.FlatAppearance.BorderSize = 0;
-            this.iconButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton5.IconChar = FontAwesome.Sharp.IconChar.Home;
-            this.iconButton5.IconColor = System.Drawing.Color.Black;
-            this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton5.Location = new System.Drawing.Point(0, 200);
-            this.iconButton5.Name = "iconButton5";
-            this.iconButton5.Size = new System.Drawing.Size(150, 50);
-            this.iconButton5.TabIndex = 4;
-            this.iconButton5.Text = "iconButton5";
-            this.iconButton5.UseVisualStyleBackColor = true;
-            // 
-            // iconSearch
-            // 
-            this.iconSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.iconSearch.BackColor = System.Drawing.Color.MidnightBlue;
-            this.iconSearch.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.iconSearch.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
-            this.iconSearch.IconColor = System.Drawing.SystemColors.ControlLightLight;
-            this.iconSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconSearch.IconSize = 30;
-            this.iconSearch.Location = new System.Drawing.Point(188, 10);
-            this.iconSearch.Name = "iconSearch";
-            this.iconSearch.Size = new System.Drawing.Size(30, 30);
-            this.iconSearch.TabIndex = 5;
-            this.iconSearch.TabStop = false;
-            // 
-            // searchBar
-            // 
-            this.searchBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.searchBar.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.searchBar.Location = new System.Drawing.Point(226, 13);
-            this.searchBar.Name = "searchBar";
-            this.searchBar.Size = new System.Drawing.Size(495, 25);
-            this.searchBar.TabIndex = 6;
-            this.searchBar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StartSearching);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(841, 540);
+            this.ClientSize = new System.Drawing.Size(850, 550);
             this.Controls.Add(this.panelSubform);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelTop);
@@ -279,9 +285,10 @@
             this.Text = "Comic Spider";
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+            this.panelMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelSide)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -294,15 +301,15 @@
         private FontAwesome.Sharp.IconButton btnExit;
         private FontAwesome.Sharp.IconButton btnMinimize;
         private FontAwesome.Sharp.IconButton btnMaximize;
-        private System.Windows.Forms.Label labelTitle;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label logoTitle;
+        private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.TextBox searchBar;
         private FontAwesome.Sharp.IconPictureBox iconSearch;
-        private FontAwesome.Sharp.IconButton iconButton5;
-        private FontAwesome.Sharp.IconButton iconButton4;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnSettings;
+        private FontAwesome.Sharp.IconButton btnHistory;
+        private FontAwesome.Sharp.IconButton btnDownload;
+        private FontAwesome.Sharp.IconButton btnMainPage;
+        private System.Windows.Forms.PictureBox panelSide;
     }
 }
 

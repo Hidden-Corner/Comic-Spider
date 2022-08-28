@@ -10,7 +10,7 @@ namespace GuFengApi
 {
     public class Client
     {
-        protected static string mainUri = Ini.Read("Settings", "Website", "Settings.ini");
+        protected static string mainUri;
 
         /// <summary>
         /// 搜索指定内容
@@ -95,6 +95,18 @@ namespace GuFengApi
             stream.Close();
             response.Close();
             return doc;
+        }
+        #endregion
+
+        #region 初始化
+        public Client()
+        {
+            mainUri = Ini.Read("Settings", "Website", "Settings.ini");
+        }
+
+        public Client(string url)
+        {
+            mainUri = url;
         }
         #endregion
     }

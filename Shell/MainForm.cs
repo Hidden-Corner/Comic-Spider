@@ -1,17 +1,52 @@
 ﻿using System.Runtime.InteropServices;
 using System;
 using System.Windows.Forms;
+using GuFengApi;
+using Shell.Subforms;
 
 namespace Shell
 {
     public partial class MainForm : Form
     {
+        FormHome fHome = new FormHome();
+        FormDownload fDownload = new FormDownload();
+        FormHistory fHistory = new FormHistory();
+        FormSettings fSettings = new FormSettings();
+
+        Client api;
+
         public MainForm()
         {
             this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
+            try
+            {
+                api = new Client();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[warning]{DateTime.Now}:Failed to read Settings.ini. Use \"https://www.123gf.com/\" as the default address of website.");
+                api = new Client("https://www.123gf.com/");
+            }
             InitializeComponent();
+            SwitchSubform(fHome);
         }
 
+        protected void SwitchSubform(Form sf)
+        {
+            foreach(var item in this.panelSubform.Controls)
+            {
+                if (item is Form)
+                {
+                    (item as Form).Hide();
+                }
+            }
+            sf.TopLevel = false;
+            sf.Parent = this.panelSubform;
+            sf.Dock = DockStyle.Fill;
+            sf.Show();
+        }
+
+        #region 右上角控件实现
         private void ClickExitBtn(object sender, System.EventArgs e)
         {
             Application.Exit();
@@ -26,6 +61,7 @@ namespace Shell
         {
             this.WindowState = FormWindowState.Minimized;
         }
+        #endregion
 
         #region 拖动窗口相关
         [DllImport("user32.dll")]//拖动无窗体的控件
@@ -47,8 +83,39 @@ namespace Shell
         {
             if (e.KeyChar == 13)
             {
-                Console.WriteLine($"Start Searching! Book name: {searchBar.Text}");
+                Console.WriteLine($"[info]{DateTime.Now}: Search title: {searchBar.Text}");
+                SwitchSubform(fHome);
+                Book[] result = api.Search(searchBar.Text);
             }
+        }
+
+        protected void MoveSide(int rank)
+        {
+            panelSide.Location = new System.Drawing.Point(0, 10 + 50 * rank);
+        }
+
+        private void btnMainPage_Click(object sender, EventArgs e)
+        {
+            MoveSide(0);
+            SwitchSubform(fHome);
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            MoveSide(1);
+            SwitchSubform(fDownload);
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            MoveSide(2);
+            SwitchSubform(fHistory);
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            MoveSide(3);
+            SwitchSubform(fSettings);
         }
     }
 }
