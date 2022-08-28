@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>books shelf.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -60,6 +60,9 @@
     <StartupObject>Shell.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome.Sharp, Version=6.1.1.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.6.1.1\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -100,6 +103,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Hidden Corner.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -114,8 +118,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="books shelf.ico" />
     <Content Include="Icon.ico" />
-    <Content Include="Resouces\Icon.ico" />
+    <Content Include="MetroFramework.Design.dll" />
+    <Content Include="Resouces\books shelf.ico" />
+    <Content Include="Resouces\books shelf.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
