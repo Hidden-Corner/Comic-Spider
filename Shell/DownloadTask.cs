@@ -2,7 +2,7 @@
 
 namespace Shell
 {
-    internal class DownloadQueue
+    internal class DownloadTask
     {
     }
 }

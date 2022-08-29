@@ -9,7 +9,7 @@ namespace Shell
     public partial class MainForm : Form
     {
         internal Home fHome = new Home();
-        internal Download fDownload = new Download();
+        internal Download fDownload = new Download(1);
         internal History fHistory = new History();
         internal Settings fSettings = new Settings();
         internal About fAbout = new About();

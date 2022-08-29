@@ -7,7 +7,6 @@ namespace Shell
     internal static class Program
     {
         internal static CacheManager Cache = new CacheManager("Cache");
-        internal static DownloadQueue DownloadQueue = new DownloadQueue();
         internal static MainForm MainForm;
 
         /// <summary>
@@ -20,6 +19,7 @@ namespace Shell
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainForm = new MainForm();
+            Control.CheckForIllegalCrossThreadCalls = false;
             Application.Run(MainForm);
         }
     }
