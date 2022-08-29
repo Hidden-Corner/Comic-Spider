@@ -64,8 +64,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label taskName;
         internal System.Windows.Forms.ProgressBar progressBar;
+        public System.Windows.Forms.Label taskName;
     }
 }

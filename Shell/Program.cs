@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.IO;
 using System.Windows.Forms;
 
@@ -18,7 +19,7 @@ namespace Shell
             Console.WriteLine($"[info]({DateTime.Now}): Start from \"{Directory.GetCurrentDirectory()}\"");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainForm = new MainForm();
+            MainForm = new MainForm(Thread.CurrentThread);
             Control.CheckForIllegalCrossThreadCalls = false;
             Application.Run(MainForm);
         }

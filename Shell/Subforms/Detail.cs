@@ -16,9 +16,9 @@ namespace Shell.Subforms
             bookCover.Image = Image.FromFile(Program.Cache.ReadCache(book.Cover));
             bookName.Text = book.Title;
 
-            foreach(var chapter in book.Chapters)
+            for(int i = 0; i < book.Chapters.Length; ++i)
             {
-                ChapterLine line = new ChapterLine(chapter);
+                ChapterLine line = new ChapterLine(book.Chapters[i], i, book.Title);
                 line.Dock = DockStyle.Top;
                 panelChapter.Controls.Add(line);
             }
@@ -41,7 +41,7 @@ namespace Shell.Subforms
             {
                 ranks[i] = i;
             }
-            Download.Task task = new Download.Task(book, ranks);
+            Download.MulitTask task = new Download.MulitTask(book, ranks);
             Program.MainForm.fDownload.AddTask(task);
         }
 

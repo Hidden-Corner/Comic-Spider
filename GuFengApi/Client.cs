@@ -4,7 +4,9 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Security.Policy;
 using HtmlAgilityPack;
+using static GuFengApi.Book;
 
 namespace GuFengApi
 {
@@ -65,6 +67,39 @@ namespace GuFengApi
             response.Close();
         }
 
+        /// <summary>
+        /// 仅下载指定章节到目录
+        /// </summary>
+        /// <param name="rank">章节序号</param>
+        public static void DownloadChapter(Chapter chapter, string title, System.Windows.Forms.ProgressBar progressBar)
+        {
+            if (chapter.Pages == null)
+                chapter.Pages = Book.InitPages(chapter.Uri);
+
+            using (var target = chapter)
+            {
+                string path = GetDownloadPath();
+
+                #region 检查文件下载目录是否存在
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                if (!Directory.Exists($"{path}/{title}"))
+                    Directory.CreateDirectory(path + $"/{title}");
+                if (!Directory.Exists($"{path}/{title}/{target.Name}"))
+                    Directory.CreateDirectory($"{path}/{title}/{target.Name}");
+                #endregion
+
+                path = $"{path}/{title}/{target.Name}";
+                for (int i = 0; i < target.Pages.Length; ++i)
+                {
+                    // 逐一下载图片
+                    Download(target.Pages[i], $"{path}/{i + 1}.jpg");
+                    if (progressBar != null)
+                        progressBar.Value = (i + 1) * 100 / target.Pages.Length;
+                }
+            }
+        }
+
         #region 内部方法
         /// <summary>
         /// 初始化请求头
@@ -76,6 +111,7 @@ namespace GuFengApi
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUri);
             request.Method = "GET";
+            request.Timeout = 30000;
             request.UserAgent = $"GuFengViewerLib/{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
             request.KeepAlive = false;
             request.Referer = "https://www.123gf.com/";
@@ -89,15 +125,23 @@ namespace GuFengApi
         internal static HtmlDocument GetDocument(Uri htmlUri)
         {
             HttpWebRequest request = InitApiHttpRequest(htmlUri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream stream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(stream);
-            HtmlDocument doc = new HtmlDocument();
-            doc.LoadHtml(reader.ReadToEnd());
-            reader.Close();
-            stream.Close();
-            response.Close();
-            return doc;
+        retry:
+            try
+            {
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream stream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(stream);
+                HtmlDocument doc = new HtmlDocument();
+                doc.LoadHtml(reader.ReadToEnd());
+                reader.Close();
+                stream.Close();
+                response.Close();
+                return doc;
+            }
+            catch(WebException we)
+            {
+                goto retry;
+            }
         }
         #endregion
 

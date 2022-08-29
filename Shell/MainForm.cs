@@ -9,15 +9,21 @@ namespace Shell
     public partial class MainForm : Form
     {
         internal Home fHome = new Home();
-        internal Download fDownload = new Download(1);
+        internal Download fDownload;
         internal History fHistory = new History();
         internal Settings fSettings = new Settings();
         internal About fAbout = new About();
 
         Client api;
 
-        public MainForm()
+        public MainForm(object mainThread)
         {
+            fHome = new Home();
+            fDownload = new Download(1, mainThread);
+            fHistory = new History();
+            fSettings = new Settings();
+            fAbout = new About();
+
             this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
             try
             {

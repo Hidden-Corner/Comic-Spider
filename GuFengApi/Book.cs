@@ -73,52 +73,6 @@ namespace GuFengApi
 
         Chapter[] chapters;
 
-        /// <summary>
-        /// 把整本书下载到指定目录
-        /// </summary>
-        public void Download()
-        {
-            if (chapters == null)
-                chapters = InitChapters();
-            // 直接调用现成的函数
-            for (int i = 0; i < chapters.Length; ++i)
-            {
-                DownloadSingleChapter(i);
-            }
-        }
-
-        /// <summary>
-        /// 仅下载指定章节到目录
-        /// </summary>
-        /// <param name="rank">章节序号</param>
-        public void DownloadSingleChapter(int rank)
-        {
-            if (chapters == null)
-                chapters = InitChapters();
-            if (chapters[rank].Pages == null)
-                chapters[rank].Pages = InitPages(chapters[rank].Uri);
-
-            using (var target = chapters[rank]) {
-                string path = GetDownloadPath();
-
-                #region 检查文件下载目录是否存在
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
-                if (!Directory.Exists($"{path}/{title}"))
-                    Directory.CreateDirectory(path + $"/{title}");
-                if (!Directory.Exists($"{path}/{title}/{target.Name}"))
-                    Directory.CreateDirectory($"{path}/{title}/{target.Name}");
-                #endregion
-
-                path = $"{path}/{title}/{target.Name}";
-                for (int i = 0; i < target.Pages.Length; ++i)
-                {
-                    // 逐一下载图片
-                    Client.Download(target.Pages[i], $"{path}/{i + 1}.jpg");
-                }
-            }
-        }
-
         #region 内部方法
         protected Chapter[] InitChapters()
         {
@@ -135,9 +89,9 @@ namespace GuFengApi
 
             return chapters;
         }
-        protected Uri[] InitPages(Uri uri)
+        internal static Uri[] InitPages(Uri uri)
         {
-            string script = Client.GetDocument(uri).DocumentNode.SelectSingleNode("/html/body/script").ToString();
+            string script = Client.GetDocument(uri).DocumentNode.SelectSingleNode("/html/body/script").InnerText;
 
             // 剩下的代码基本照搬 non-gui 分支
             // 原理就是通过正则表达式匹配 HTML 下的 Script 里写好的图片编号，计算资源站里图片源地址
@@ -150,7 +104,7 @@ namespace GuFengApi
             }
             return pages;
         }
-        protected string GetDownloadPath()
+        internal static string GetDownloadPath()
         {
             string path;
             try
@@ -160,7 +114,7 @@ namespace GuFengApi
             catch (Exception ex)
             {
                 Console.WriteLine($"[warning]{DateTime.Now}: Failed to read Settings.ini. Use \"{KnownFolders.Downloads.Path + "\\ComicSpider"}\" as default download path.");
-                return KnownFolders.Downloads.Path;
+                return KnownFolders.Downloads.Path + "\\ComicSpider";
             }
             if (path == "?" || !Directory.Exists(path))
             {

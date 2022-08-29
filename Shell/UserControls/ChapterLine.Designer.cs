@@ -60,6 +60,7 @@
             this.btnDownload.TabIndex = 1;
             this.btnDownload.Text = "下载";
             this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // ChapterLine
             // 
