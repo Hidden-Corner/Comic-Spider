@@ -129,8 +129,8 @@ namespace GuFengApi
             for (int i = 0; i < chapterNodes.Count; ++i)
             {
                 chapters[i] = new Chapter();
-                chapters[i].Name = chapterNodes[i].SelectSingleNode("/span").InnerText;
-                chapters[i].Uri = new Uri(chapterNodes[i].Attributes["href"].ToString());
+                chapters[i].Name = chapterNodes[i].SelectSingleNode("./span").InnerText;
+                chapters[i].Uri = new Uri(chapterNodes[i].Attributes["href"].Value.ToString());
             }
 
             return chapters;

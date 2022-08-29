@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Shell
@@ -18,6 +16,7 @@ namespace Shell
         [STAThread]
         static void Main(string[] args)
         {
+            Console.WriteLine($"[info]({DateTime.Now}): Start from \"{Directory.GetCurrentDirectory()}\"");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainForm = new MainForm();

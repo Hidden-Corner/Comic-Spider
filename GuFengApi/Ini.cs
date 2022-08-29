@@ -27,8 +27,8 @@ namespace GuFengApi
         internal static string Read(string section, string key, string path)
         {
             StringBuilder builder = new StringBuilder(2048);
-            GetPrivateProfileString(section, key, null, builder, 2048, path);
-            if (builder.ToString() == null)
+            GetPrivateProfileString(section, key, "", builder, 2048, path);
+            if (builder.ToString() == "")
             {
                 Exception ex = new Exception("Failed to read ini file!");
                 throw ex;

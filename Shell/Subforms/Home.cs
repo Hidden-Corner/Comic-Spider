@@ -8,7 +8,6 @@ namespace Shell.Subforms
     {
         internal Detail fDetail;
         protected BookPreview[] previews;
-        bool openningSubform = false;
 
         public Home()
         {
@@ -18,8 +17,8 @@ namespace Shell.Subforms
         internal void OpenDetail(Book book)
         {
             fDetail = new Detail(book);
-            fDetail.Parent = this.Parent;
             fDetail.TopLevel = false;
+            fDetail.Parent = this.Parent;
             fDetail.Dock = DockStyle.Fill;
             this.Hide();
             fDetail.Show();
@@ -45,12 +44,13 @@ namespace Shell.Subforms
             }
         }
 
-        internal new void Show()
+        private void Home_VisibleChanged(object sender, System.EventArgs e)
         {
-            if (fDetail != null)
+            if (Visible == true && fDetail != null)
+            {
+                this.Hide();
                 fDetail.Show();
-            else
-                base.Show();
+            }
         }
     }
 }

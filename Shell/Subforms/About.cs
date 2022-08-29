@@ -15,6 +15,7 @@ namespace Shell.Subforms
         public About()
         {
             InitializeComponent();
+            labelVersion.Text = ProductVersion;
         }
 
         private void GoToWebsite(object sender, LinkLabelLinkClickedEventArgs e)

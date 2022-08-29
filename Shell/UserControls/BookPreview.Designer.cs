@@ -40,6 +40,7 @@
             this.cover.Location = new System.Drawing.Point(3, 3);
             this.cover.Name = "cover";
             this.cover.Size = new System.Drawing.Size(140, 186);
+            this.cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.cover.TabIndex = 0;
             this.cover.TabStop = false;
             this.cover.Click += new System.EventHandler(this.cover_Click);

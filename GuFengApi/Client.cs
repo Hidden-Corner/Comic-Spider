@@ -28,11 +28,11 @@ namespace GuFengApi
             for(int i = 0; i < bookRootNodes.Count; ++i)
             {
                 books[i] = new Book();
-                books[i].Title = bookRootNodes[i].SelectSingleNode("/a").Attributes["title"].ToString();
-                books[i].Cover = new Uri(bookRootNodes[i].SelectSingleNode("/a/img").Attributes["src"].ToString());
-                books[i].BookUri = new Uri(bookRootNodes[i].SelectSingleNode("/a").Attributes["href"].ToString());
-                books[i].UpdateTo = bookRootNodes[i].SelectSingleNode("/a/span[@class='tt']").InnerText;
-                books[i].Time = bookRootNodes[i].SelectSingleNode("/span").InnerText;
+                books[i].Title = bookRootNodes[i].SelectSingleNode("./p/a").InnerText;
+                books[i].Cover = new Uri(bookRootNodes[i].SelectSingleNode("./a/img").Attributes["src"].Value.ToString());
+                books[i].BookUri = new Uri(bookRootNodes[i].SelectSingleNode("./a").Attributes["href"].Value.ToString());
+                books[i].UpdateTo = bookRootNodes[i].SelectSingleNode("./a/span[@class='tt']").InnerText;
+                books[i].Time = bookRootNodes[i].SelectSingleNode("./span").InnerText;
             }
 
             return books;
@@ -73,7 +73,7 @@ namespace GuFengApi
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUri);
             request.Method = "GET";
-            request.UserAgent = "GuFengViewerLib/1.0";
+            request.UserAgent = $"GuFengViewerLib/{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
             request.KeepAlive = false;
             request.Referer = "https://www.123gf.com/";
             return request;
@@ -90,7 +90,7 @@ namespace GuFengApi
             Stream stream = response.GetResponseStream();
             StreamReader reader = new StreamReader(stream);
             HtmlDocument doc = new HtmlDocument();
-            doc.Load(reader.ReadToEnd());
+            doc.LoadHtml(reader.ReadToEnd());
             reader.Close();
             stream.Close();
             response.Close();

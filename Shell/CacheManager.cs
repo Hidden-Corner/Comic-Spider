@@ -23,7 +23,7 @@ namespace Shell
 
         public string ReadCache(Uri uri)
         {
-            string localPath = $"Cache/{uri.ToString().Split('/')[ToString().Length - 1]}";
+            string localPath = $"Cache/{uri.ToString().Split('/')[uri.ToString().Split('/').Length - 1]}";
             if (!File.Exists(localPath))
             {
                 Client.Download(uri, localPath);

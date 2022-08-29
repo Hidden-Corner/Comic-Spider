@@ -48,6 +48,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Home";
             this.Text = "FormHome";
+            this.VisibleChanged += new System.EventHandler(this.Home_VisibleChanged);
             this.ResumeLayout(false);
 
         }

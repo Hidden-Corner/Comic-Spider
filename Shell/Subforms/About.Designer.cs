@@ -33,10 +33,10 @@
             this.labelLogo = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.groupBoxContact = new System.Windows.Forms.GroupBox();
-            this.labelWebsiteCaption = new System.Windows.Forms.Label();
-            this.labelWebsite = new System.Windows.Forms.LinkLabel();
-            this.labelEmailCaption = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelEmailCaption = new System.Windows.Forms.Label();
+            this.labelWebsite = new System.Windows.Forms.LinkLabel();
+            this.labelWebsiteCaption = new System.Windows.Forms.Label();
             this.textBoxThanks = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.groupBoxContact.SuspendLayout();
@@ -71,9 +71,9 @@
             this.labelVersion.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelVersion.Location = new System.Drawing.Point(325, 159);
             this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(51, 17);
+            this.labelVersion.Size = new System.Drawing.Size(50, 17);
             this.labelVersion.TabIndex = 2;
-            this.labelVersion.Text = "v1.0.0.0";
+            this.labelVersion.Text = "version";
             // 
             // groupBoxContact
             // 
@@ -82,6 +82,7 @@
             this.groupBoxContact.Controls.Add(this.labelEmailCaption);
             this.groupBoxContact.Controls.Add(this.labelWebsite);
             this.groupBoxContact.Controls.Add(this.labelWebsiteCaption);
+            this.groupBoxContact.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBoxContact.Location = new System.Drawing.Point(146, 179);
             this.groupBoxContact.Name = "groupBoxContact";
             this.groupBoxContact.Size = new System.Drawing.Size(420, 70);
@@ -89,15 +90,25 @@
             this.groupBoxContact.TabStop = false;
             this.groupBoxContact.Text = "联系我们";
             // 
-            // labelWebsiteCaption
+            // label1
             // 
-            this.labelWebsiteCaption.AutoSize = true;
-            this.labelWebsiteCaption.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelWebsiteCaption.Location = new System.Drawing.Point(7, 21);
-            this.labelWebsiteCaption.Name = "labelWebsiteCaption";
-            this.labelWebsiteCaption.Size = new System.Drawing.Size(51, 20);
-            this.labelWebsiteCaption.TabIndex = 0;
-            this.labelWebsiteCaption.Text = "网站：";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(64, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(209, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Hidden_Corner@outlook.com";
+            // 
+            // labelEmailCaption
+            // 
+            this.labelEmailCaption.AutoSize = true;
+            this.labelEmailCaption.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelEmailCaption.Location = new System.Drawing.Point(7, 41);
+            this.labelEmailCaption.Name = "labelEmailCaption";
+            this.labelEmailCaption.Size = new System.Drawing.Size(51, 20);
+            this.labelEmailCaption.TabIndex = 2;
+            this.labelEmailCaption.Text = "邮箱：";
             // 
             // labelWebsite
             // 
@@ -111,25 +122,15 @@
             this.labelWebsite.Text = "https://github.com/Hidden-Corner/Comic-Spider";
             this.labelWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GoToWebsite);
             // 
-            // labelEmailCaption
+            // labelWebsiteCaption
             // 
-            this.labelEmailCaption.AutoSize = true;
-            this.labelEmailCaption.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelEmailCaption.Location = new System.Drawing.Point(7, 41);
-            this.labelEmailCaption.Name = "labelEmailCaption";
-            this.labelEmailCaption.Size = new System.Drawing.Size(51, 20);
-            this.labelEmailCaption.TabIndex = 2;
-            this.labelEmailCaption.Text = "邮箱：";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(64, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(209, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Hidden_Corner@outlook.com";
+            this.labelWebsiteCaption.AutoSize = true;
+            this.labelWebsiteCaption.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelWebsiteCaption.Location = new System.Drawing.Point(7, 21);
+            this.labelWebsiteCaption.Name = "labelWebsiteCaption";
+            this.labelWebsiteCaption.Size = new System.Drawing.Size(51, 20);
+            this.labelWebsiteCaption.TabIndex = 0;
+            this.labelWebsiteCaption.Text = "网站：";
             // 
             // textBoxThanks
             // 

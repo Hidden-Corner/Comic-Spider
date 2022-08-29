@@ -25,7 +25,7 @@ namespace Shell
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[warning]{DateTime.Now}:Failed to read Settings.ini. Use \"https://www.123gf.com/\" as the default address of website.");
+                Console.WriteLine($"[warning]({DateTime.Now}):Failed to read Settings.ini. Use \"https://www.123gf.com/\" as the default address of website.");
                 api = new Client("https://www.123gf.com/");
             }
             InitializeComponent();

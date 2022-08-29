@@ -13,6 +13,7 @@ namespace Shell.Subforms
             InitializeComponent();
             this.book = book;
             bookCover.Image = Image.FromFile(Program.Cache.ReadCache(book.Cover));
+            bookName.Text = book.Title;
         }
 
         private void btnReadOnline_Click(object sender, System.EventArgs e)
@@ -31,9 +32,9 @@ namespace Shell.Subforms
 
         private void btnBackwards_Click(object sender, System.EventArgs e)
         {
-            Program.MainForm.fHome.fDetail = null;
             this.Hide();
-            Parent.Show();
+            Program.MainForm.fHome.fDetail = null;
+            Program.MainForm.fHome.Show();
             Dispose();
         }
     }
