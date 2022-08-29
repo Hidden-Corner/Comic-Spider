@@ -85,6 +85,8 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheManager.cs" />
+    <Compile Include="DownloadQueue.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,29 +95,53 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Subforms\FormDownload.cs">
+    <Compile Include="Subforms\About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Subforms\FormDownload.Designer.cs">
-      <DependentUpon>FormDownload.cs</DependentUpon>
+    <Compile Include="Subforms\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Subforms\FormHistory.cs">
+    <Compile Include="Subforms\Detail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Subforms\FormHistory.Designer.cs">
-      <DependentUpon>FormHistory.cs</DependentUpon>
+    <Compile Include="Subforms\Detail.Designer.cs">
+      <DependentUpon>Detail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Subforms\FormHome.cs">
+    <Compile Include="Subforms\Download.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Subforms\FormHome.Designer.cs">
-      <DependentUpon>FormHome.cs</DependentUpon>
+    <Compile Include="Subforms\Download.Designer.cs">
+      <DependentUpon>Download.cs</DependentUpon>
     </Compile>
-    <Compile Include="Subforms\FormSettings.cs">
+    <Compile Include="Subforms\History.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Subforms\FormSettings.Designer.cs">
-      <DependentUpon>FormSettings.cs</DependentUpon>
+    <Compile Include="Subforms\History.Designer.cs">
+      <DependentUpon>History.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subforms\Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subforms\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subforms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subforms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BookPreview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\BookPreview.Designer.cs">
+      <DependentUpon>BookPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ChapterLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ChapterLine.Designer.cs">
+      <DependentUpon>ChapterLine.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -129,17 +155,29 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Subforms\FormDownload.resx">
-      <DependentUpon>FormDownload.cs</DependentUpon>
+    <EmbeddedResource Include="Subforms\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Subforms\FormHistory.resx">
-      <DependentUpon>FormHistory.cs</DependentUpon>
+    <EmbeddedResource Include="Subforms\Detail.resx">
+      <DependentUpon>Detail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Subforms\FormHome.resx">
-      <DependentUpon>FormHome.cs</DependentUpon>
+    <EmbeddedResource Include="Subforms\Download.resx">
+      <DependentUpon>Download.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Subforms\FormSettings.resx">
-      <DependentUpon>FormSettings.cs</DependentUpon>
+    <EmbeddedResource Include="Subforms\History.resx">
+      <DependentUpon>History.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subforms\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subforms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\BookPreview.resx">
+      <DependentUpon>BookPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ChapterLine.resx">
+      <DependentUpon>ChapterLine.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Hidden Corner.pfx" />
     <None Include="packages.config" />
@@ -158,8 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="books shelf.ico" />
-    <Content Include="Icon.ico" />
-    <Content Include="MetroFramework.Design.dll" />
     <Content Include="Resouces\books shelf.ico" />
     <Content Include="Resouces\books shelf.png" />
   </ItemGroup>

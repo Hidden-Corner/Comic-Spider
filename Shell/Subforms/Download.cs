@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Shell.Subforms
 {
-    public partial class FormHome : Form
+    public partial class Download : Form
     {
-        public FormHome()
+        public Download()
         {
             InitializeComponent();
         }

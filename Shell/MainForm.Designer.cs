@@ -39,6 +39,7 @@
             this.btnExit = new FontAwesome.Sharp.IconButton();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelSide = new System.Windows.Forms.PictureBox();
+            this.btnAbout = new FontAwesome.Sharp.IconButton();
             this.btnSettings = new FontAwesome.Sharp.IconButton();
             this.btnHistory = new FontAwesome.Sharp.IconButton();
             this.btnDownload = new FontAwesome.Sharp.IconButton();
@@ -82,7 +83,6 @@
             // 
             // iconSearch
             // 
-            this.iconSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.iconSearch.BackColor = System.Drawing.Color.MidnightBlue;
             this.iconSearch.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.iconSearch.IconChar = FontAwesome.Sharp.IconChar.Search;
@@ -168,6 +168,7 @@
             // 
             this.panelMenu.BackColor = System.Drawing.SystemColors.HotTrack;
             this.panelMenu.Controls.Add(this.panelSide);
+            this.panelMenu.Controls.Add(this.btnAbout);
             this.panelMenu.Controls.Add(this.btnSettings);
             this.panelMenu.Controls.Add(this.btnHistory);
             this.panelMenu.Controls.Add(this.btnDownload);
@@ -186,6 +187,25 @@
             this.panelSide.Size = new System.Drawing.Size(5, 30);
             this.panelSide.TabIndex = 4;
             this.panelSide.TabStop = false;
+            // 
+            // btnAbout
+            // 
+            this.btnAbout.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAbout.FlatAppearance.BorderSize = 0;
+            this.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbout.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAbout.IconChar = FontAwesome.Sharp.IconChar.Info;
+            this.btnAbout.IconColor = System.Drawing.Color.Black;
+            this.btnAbout.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAbout.IconSize = 40;
+            this.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAbout.Location = new System.Drawing.Point(0, 200);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(150, 50);
+            this.btnAbout.TabIndex = 5;
+            this.btnAbout.Text = "关于";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // btnSettings
             // 
@@ -281,6 +301,7 @@
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(850, 550);
             this.Name = "MainForm";
             this.Text = "Comic Spider";
             this.panelTop.ResumeLayout(false);
@@ -297,7 +318,6 @@
 
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Panel panelSubform;
         private FontAwesome.Sharp.IconButton btnExit;
         private FontAwesome.Sharp.IconButton btnMinimize;
         private FontAwesome.Sharp.IconButton btnMaximize;
@@ -310,6 +330,8 @@
         private FontAwesome.Sharp.IconButton btnDownload;
         private FontAwesome.Sharp.IconButton btnMainPage;
         private System.Windows.Forms.PictureBox panelSide;
+        private FontAwesome.Sharp.IconButton btnAbout;
+        internal System.Windows.Forms.Panel panelSubform;
     }
 }
 

@@ -8,10 +8,11 @@ namespace Shell
 {
     public partial class MainForm : Form
     {
-        FormHome fHome = new FormHome();
-        FormDownload fDownload = new FormDownload();
-        FormHistory fHistory = new FormHistory();
-        FormSettings fSettings = new FormSettings();
+        internal Home fHome = new Home();
+        internal Download fDownload = new Download();
+        internal History fHistory = new History();
+        internal Settings fSettings = new Settings();
+        internal About fAbout = new About();
 
         Client api;
 
@@ -85,37 +86,45 @@ namespace Shell
             {
                 Console.WriteLine($"[info]{DateTime.Now}: Search title: {searchBar.Text}");
                 SwitchSubform(fHome);
-                Book[] result = api.Search(searchBar.Text);
+                fHome.RefreshList(searchBar.Text, api);
             }
         }
 
-        protected void MoveSide(int rank)
+        #region 侧边栏点击事件
+        protected void MoveSide(int location)
         {
-            panelSide.Location = new System.Drawing.Point(0, 10 + 50 * rank);
+            panelSide.Location = new System.Drawing.Point(0, 10 + location);
         }
 
         private void btnMainPage_Click(object sender, EventArgs e)
         {
-            MoveSide(0);
+            MoveSide(btnMainPage.Location.Y);
             SwitchSubform(fHome);
         }
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-            MoveSide(1);
+            MoveSide(btnDownload.Location.Y);
             SwitchSubform(fDownload);
         }
 
         private void btnHistory_Click(object sender, EventArgs e)
         {
-            MoveSide(2);
+            MoveSide(btnHistory.Location.Y);
             SwitchSubform(fHistory);
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            MoveSide(3);
+            MoveSide(btnSettings.Location.Y);
             SwitchSubform(fSettings);
         }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            MoveSide(btnAbout.Location.Y);
+            SwitchSubform(fAbout);
+        }
+        #endregion
     }
 }

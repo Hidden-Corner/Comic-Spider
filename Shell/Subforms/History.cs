@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Shell.Subforms
 {
-    public partial class FormSettings : Form
+    public partial class History : Form
     {
-        public FormSettings()
+        public History()
         {
             InitializeComponent();
         }

@@ -8,6 +8,10 @@ namespace Shell
 {
     internal static class Program
     {
+        internal static CacheManager Cache = new CacheManager("Cache");
+        internal static DownloadQueue DownloadQueue = new DownloadQueue();
+        internal static MainForm MainForm;
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -16,7 +20,8 @@ namespace Shell
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            MainForm = new MainForm();
+            Application.Run(MainForm);
         }
     }
 }

@@ -7,10 +7,12 @@ using System.Text.RegularExpressions;
 using Microsoft.WindowsAPICodePack.Shell;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
+using System.Xml.Linq;
 
 namespace GuFengApi
 {
-    public class Book
+    public class Book : IDisposable
     {
         string title;
         Uri cover;
@@ -74,7 +76,6 @@ namespace GuFengApi
         /// <summary>
         /// 把整本书下载到指定目录
         /// </summary>
-        /// <param name="path">指定目录</param>
         public void Download()
         {
             if (chapters == null)
@@ -90,7 +91,6 @@ namespace GuFengApi
         /// 仅下载指定章节到目录
         /// </summary>
         /// <param name="rank">章节序号</param>
-        /// <param name="path">目录</param>
         public void DownloadSingleChapter(int rank)
         {
             if (chapters == null)
@@ -170,12 +170,56 @@ namespace GuFengApi
             return path;
         }
         #endregion
+
         #region 初始化相关
         public string Title { get => title; internal set => title = value; }
         public Uri Cover { get => cover; internal set => cover = value; }
         public string UpdateTo { get => updateTo; internal set => updateTo = value; }
         public string Time { get => time; internal set => time = value; }
-        internal Uri BookUri { get => bookUri; set => bookUri = value; } // 不应该暴露 Uri 给外部直接访问
+        public Uri BookUri { get => bookUri; internal set => bookUri = value; } // 不应该暴露 Uri 给外部直接访问
+        #endregion
+
+        #region IDisposable 派生实现
+        bool disposed = false;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~Book()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+            //清理托管资源
+            if (disposing)
+            {
+                if (title != null)
+                    title = null;
+                if (cover != null)
+                    cover = null;
+                if (updateTo != null)
+                    updateTo = null;
+                if (bookUri != null)
+                    bookUri = null;
+                if (chapters != null)
+                {
+                    foreach(var chapter in chapters)
+                        chapter.Dispose();
+                    chapters = null;
+                }
+            }
+            //告诉自己已经被释放
+            disposed = true;
+        }
         #endregion
     }
 }

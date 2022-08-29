@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Shell.Subforms
 {
-    public partial class FormHistory : Form
+    public partial class About : Form
     {
-        public FormHistory()
+        public About()
         {
             InitializeComponent();
+        }
+
+        private void GoToWebsite(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Hidden-Corner/Comic-Spider");
         }
     }
 }

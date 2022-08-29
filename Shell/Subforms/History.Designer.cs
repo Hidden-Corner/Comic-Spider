@@ -1,6 +1,6 @@
 ﻿namespace Shell.Subforms
 {
-    partial class FormHistory
+    partial class History
     {
         /// <summary>
         /// Required designer variable.
