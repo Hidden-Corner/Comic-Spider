@@ -22,6 +22,9 @@ namespace GuFengApi
             // 获取基本信息
             HtmlDocument doc = GetDocument(new Uri(mainUri + "search/?keywords=" + title));
             HtmlNodeCollection bookRootNodes = doc.DocumentNode.SelectNodes("//ul[@class='book-list clearfix']/li[@class='item-lg']");
+            if (bookRootNodes == null)
+                return null;
+
             Book[] books = new Book[bookRootNodes.Count];
 
             //初始化 books

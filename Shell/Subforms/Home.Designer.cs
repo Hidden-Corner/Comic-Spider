@@ -33,6 +33,7 @@
             // 
             // bookList
             // 
+            this.bookList.AutoScroll = true;
             this.bookList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bookList.Location = new System.Drawing.Point(0, 0);
             this.bookList.Name = "bookList";

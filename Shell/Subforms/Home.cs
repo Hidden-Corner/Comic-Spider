@@ -31,11 +31,19 @@ namespace Shell.Subforms
                 foreach (var item in previews)
                 {
                     bookList.Controls.Remove(item);
-                    item.Dispose();
                 }
             }
 
+            if (title == null || title == "")
+            {
+                System.GC.Collect();
+                return;
+            }
+
             Book[] result = api.Search(title);
+            if (result == null)
+                return;
+
             previews = new BookPreview[result.Length];
             for (int i = 0; i < result.Length; ++i)
             {

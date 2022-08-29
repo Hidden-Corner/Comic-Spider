@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using GuFengApi;
 
 namespace Shell.UserControls
 {
     public partial class ChapterLine : UserControl
     {
-        public ChapterLine()
+        public ChapterLine(Book.Chapter chapter)
         {
             InitializeComponent();
+            this.chapterName.Text = chapter.Name;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Shell.UserControls
         ~BookPreview()
         {
             cover.Image.Dispose();
+            Dispose(true);
         }
 
         private void cover_Click(object sender, System.EventArgs e)

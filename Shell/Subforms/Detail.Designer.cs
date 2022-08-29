@@ -169,6 +169,10 @@
             // 
             // panelChapter
             // 
+            this.panelChapter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelChapter.AutoScroll = true;
             this.panelChapter.Location = new System.Drawing.Point(12, 242);
             this.panelChapter.Name = "panelChapter";
             this.panelChapter.Size = new System.Drawing.Size(676, 246);

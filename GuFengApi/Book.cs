@@ -123,14 +123,14 @@ namespace GuFengApi
         protected Chapter[] InitChapters()
         {
             HtmlDocument doc = Client.GetDocument(bookUri);
-            HtmlNodeCollection chapterNodes = doc.DocumentNode.SelectNodes("//div[@class='chapter-body clearfix']/ul[@id='chapter-list-1']/li/a");
+            HtmlNodeCollection chapterNodes = doc.DocumentNode.SelectNodes("//div[@class='chapter-body clearfix']/ul/li/a");
             Chapter[] chapters = new Chapter[chapterNodes.Count];
 
             for (int i = 0; i < chapterNodes.Count; ++i)
             {
                 chapters[i] = new Chapter();
                 chapters[i].Name = chapterNodes[i].SelectSingleNode("./span").InnerText;
-                chapters[i].Uri = new Uri(chapterNodes[i].Attributes["href"].Value.ToString());
+                chapters[i].Uri = new Uri($"https://{bookUri.Host}{chapterNodes[i].Attributes["href"].Value.ToString()}");
             }
 
             return chapters;
@@ -157,7 +157,7 @@ namespace GuFengApi
             {
                 path = Ini.Read("Settings", "DownloadPath", "Settings.ini");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"[warning]{DateTime.Now}: Failed to read Settings.ini. Use \"{KnownFolders.Downloads.Path + "\\ComicSpider"}\" as default download path.");
                 return KnownFolders.Downloads.Path;
@@ -176,7 +176,8 @@ namespace GuFengApi
         public Uri Cover { get => cover; internal set => cover = value; }
         public string UpdateTo { get => updateTo; internal set => updateTo = value; }
         public string Time { get => time; internal set => time = value; }
-        public Uri BookUri { get => bookUri; internal set => bookUri = value; } // 不应该暴露 Uri 给外部直接访问
+        public Uri BookUri { get => bookUri; internal set => bookUri = value; }
+        public Chapter[] Chapters { get { if (chapters == null) chapters = InitChapters(); return chapters; } internal set => chapters = value; }
         #endregion
 
         #region IDisposable 派生实现
