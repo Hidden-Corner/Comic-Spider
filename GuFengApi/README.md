@@ -5,6 +5,10 @@
 
 [点此下载最新版](https://github.com/Hidden-Corner/Comic-Spider/releases/latest/download/Comic-Spider.zip)
 
+## 基本样式
+
+![image](https://raw.githubusercontent.com/Hidden-Corner/Comic-Spider/master/Shell/Resouces/%E6%A0%B7%E5%BC%8F.png)
+
 ## 运行环境
 
 .Net Framework 4.7.2
