@@ -52,24 +52,31 @@ namespace Shell.Subforms
         {
             task.Dtl = new DownloadTaskLine(task.Book.Title);
             task.Dtl.Dock = DockStyle.Top;
+            task.Dtl.progressBar.Visible = false;
             gbDownload.Controls.Add(task.Dtl);
             taskList.Add(task);
         }
 
+        /// <summary>
+        /// 下载 守护线程
+        /// </summary>
         protected void MaintainQueue()
         {
-            Thread.Sleep(250);
-            if (taskList.Count > 0)
+            while (true)
             {
-                for(int i = 0; i < downloaders.Length; ++i)
+                Thread.Sleep(1000);
+                if (taskList.Count > 0)
                 {
-                    if (downloaders[i] == null)
+                    for (int i = 0; i < downloaders.Length; ++i)
                     {
-                        Task ready = taskList.First();
-                        ready.Thread = i;
-                        taskList.Remove(taskList.First());
-                        downloaders[i] = new Thread(new ParameterizedThreadStart(DownloadTask));
-                        downloaders[i].Start(ready);
+                        if (downloaders[i] == null)
+                        {
+                            Task ready = taskList.First();
+                            ready.Thread = i;
+                            taskList.Remove(taskList.First());
+                            downloaders[i] = new Thread(new ParameterizedThreadStart(DownloadTask));
+                            downloaders[i].Start(ready);
+                        }
                     }
                 }
             }
@@ -77,9 +84,11 @@ namespace Shell.Subforms
 
         protected void DownloadTask(object pak)
         {
-            foreach (int rank in (pak as Task).Ranks)
+            (pak as Task).Dtl.progressBar.Visible = true;
+            for (int i = 0; i < (pak as Task).Ranks.Length; ++i)
             {
-                (pak as Task).Book.DownloadSingleChapter(rank);
+                (pak as Task).Book.DownloadSingleChapter((pak as Task).Ranks[i]);
+                (pak as Task).Dtl.progressBar.Value = i * 100 / (pak as Task).Ranks.Length;
             }
             gbDownload.Controls.Remove((pak as Task).Dtl);
             downloaders[(pak as Task).Thread] = null;

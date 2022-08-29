@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.taskName = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // taskName
@@ -41,10 +42,19 @@
             this.taskName.TabIndex = 0;
             this.taskName.Text = "taskName";
             // 
+            // progressBar
+            // 
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar.Location = new System.Drawing.Point(297, 5);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(350, 30);
+            this.progressBar.TabIndex = 1;
+            // 
             // DownloadTaskLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.taskName);
             this.Name = "DownloadTaskLine";
             this.Size = new System.Drawing.Size(650, 40);
@@ -56,5 +66,6 @@
         #endregion
 
         private System.Windows.Forms.Label taskName;
+        internal System.Windows.Forms.ProgressBar progressBar;
     }
 }
