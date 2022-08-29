@@ -36,6 +36,13 @@ namespace Shell.Subforms
 
         private void btnDownload_Click(object sender, System.EventArgs e)
         {
+            int[] ranks = new int[book.Chapters.Length];
+            for (int i = 0; i < book.Chapters.Length; ++i)
+            {
+                ranks[i] = i;
+            }
+            Download.Task task = new Download.Task(book, ranks);
+            Program.MainForm.fDownload.AddTask(task);
         }
 
         private void btnBackwards_Click(object sender, System.EventArgs e)

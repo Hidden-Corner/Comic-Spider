@@ -21,7 +21,8 @@ namespace Shell.Subforms
         {
             Book book;
             int[] ranks;
-            int thread;
+            int thread; // 负责下载该 Task 的线程序号
+            DownloadTaskLine dtl;
 
             public Task(Book book, int[] ranks)
             {
@@ -31,7 +32,8 @@ namespace Shell.Subforms
 
             public Book Book { get => book; set => book = value; }
             public int[] Ranks { get => ranks; set => ranks = value; }
-            public int Thread { get => thread; set => thread = value; }
+            public int Thread { get => thread; internal set => thread = value; }
+            public DownloadTaskLine Dtl { get => dtl; set => dtl = value; }
         }
 
         List<Task> taskList = new List<Task>();
@@ -48,8 +50,10 @@ namespace Shell.Subforms
 
         public void AddTask(Task task)
         {
+            task.Dtl = new DownloadTaskLine(task.Book.Title);
+            task.Dtl.Dock = DockStyle.Top;
+            gbDownload.Controls.Add(task.Dtl);
             taskList.Add(task);
-            DownloadTaskLine dtl = new DownloadTaskLine(task.Book.Title);
         }
 
         protected void MaintainQueue()
@@ -77,6 +81,7 @@ namespace Shell.Subforms
             {
                 (pak as Task).Book.DownloadSingleChapter(rank);
             }
+            gbDownload.Controls.Remove((pak as Task).Dtl);
             downloaders[(pak as Task).Thread] = null;
         }
         #endregion
